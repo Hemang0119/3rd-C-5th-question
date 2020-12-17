@@ -37,17 +37,19 @@ def uniqueUpdate(data1, data2):
     dupKeys = {}
 
     # Examine every (k, v2) pair in data2
-    for [k, v2] in data2:
+    for [k, v2] in data2.items:
         # Check if there is a key-value
         # pair with key = k in data1
-        if k in data1:
-            v1 = data1[k]
-            # (k, v1) in dict1
-            # Check if v1 != v2
-            if v1 != v2:
+        kFound=False
+        
+        for [k1,v1] in data1:
+            if k1==k:
+                kFound=True
+                if v1!=v2:
+                    data1.remove([k1,v1])
                 # Add (k, [v1, v2])
                 # to dictionary                
-                dupKeys[k] = [v1, v2]
+                    dupKeys[k] = [v1, v2]
                 # Remove (k, v1) from data1
                 del data1[k]
             else:
